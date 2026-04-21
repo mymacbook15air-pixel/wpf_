@@ -1,5 +1,4 @@
 using System;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -24,10 +23,9 @@ public partial class MainWindow : Window
             {
                 if (b == 0)
                 {
-                    if (c == 0)
-                        ResultBox.Text = "Уравнение имеет бесконечно много решений (0 = 0)";
-                    else
-                        ResultBox.Text = "Уравнение не имеет решений (противоречие)";
+                    ResultBox.Text = c == 0 
+                        ? "Уравнение имеет бесконечно много решений (0 = 0)"
+                        : "Уравнение не имеет решений (противоречие)";
                 }
                 else
                 {
@@ -37,77 +35,55 @@ public partial class MainWindow : Window
                 return;
             }
 
-            double discriminant = b * b - 4 * a * c;
-
+            double d = b * b - 4 * a * c;
             string equation = $"{FormatNumber(a)}x²";
             if (b >= 0) equation += $" + {FormatNumber(b)}x";
             else equation += $" - {FormatNumber(Math.Abs(b))}x";
-            
             if (c >= 0) equation += $" + {FormatNumber(c)}";
             else equation += $" - {FormatNumber(Math.Abs(c))}";
-            
             equation += " = 0";
 
-            if (discriminant > 0)
+            if (d > 0)
             {
-                double x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
-                double x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
-                
-                ResultBox.Text = $"Уравнение: {equation}\n\n" +
-                                 $"Дискриминант: D = {FormatNumber(discriminant)} > 0\n\n" +
-                                 $"Два действительных корня:\n" +
-                                 $"   x₁ = {FormatNumber(x1)}\n" +
-                                 $"   x₂ = {FormatNumber(x2)}\n\n" +
-                                 $"x₁ + x₂ = {FormatNumber(x1 + x2)} (сумма = {FormatNumber(-b / a)})\n" +
-                                 $"x₁ · x₂ = {FormatNumber(x1 * x2)} (произведение = {FormatNumber(c / a)})";
+                double x1 = (-b + Math.Sqrt(d)) / (2 * a);
+                double x2 = (-b - Math.Sqrt(d)) / (2 * a);
+                ResultBox.Text = $"Уравнение: {equation}\n\nДискриминант: D = {FormatNumber(d)} > 0\n\n" +
+                                 $"Два корня:\n   x₁ = {FormatNumber(x1)}\n   x₂ = {FormatNumber(x2)}";
             }
-            else if (discriminant == 0)
+            else if (d == 0)
             {
                 double x = -b / (2 * a);
-                
-                ResultBox.Text = $"Уравнение: {equation}\n\n" +
-                                 $"Дискриминант: D = 0\n\n" +
-                                 $"Один корень (два совпадающих):\n" +
-                                 $"   x = {FormatNumber(x)}\n\n" +
-                                 $"Проверка: {a}·({FormatNumber(x)})² + {b}·({FormatNumber(x)}) + {c} = 0";
+                ResultBox.Text = $"Уравнение: {equation}\n\nДискриминант: D = 0\n\n" +
+                                 $"Один корень: x = {FormatNumber(x)}";
             }
             else
             {
-                double realPart = -b / (2 * a);
-                double imaginaryPart = Math.Sqrt(-discriminant) / (2 * a);
-                
-                ResultBox.Text = $"Уравнение: {equation}\n\n" +
-                                 $"Дискриминант: D = {FormatNumber(discriminant)} < 0\n\n" +
-                                 $"Комплексные корни:\n" +
-                                 $"   x₁ = {FormatNumber(realPart)} + {FormatNumber(imaginaryPart)}i\n" +
-                                 $"   x₂ = {FormatNumber(realPart)} - {FormatNumber(imaginaryPart)}i\n\n" +
-                                 $"Дискриминант отрицательный — корни комплексные.";
+                double real = -b / (2 * a);
+                double imag = Math.Sqrt(-d) / (2 * a);
+                ResultBox.Text = $"Уравнение: {equation}\n\nДискриминант: D = {FormatNumber(d)} < 0\n\n" +
+                                 $"Комплексные корни:\n   x₁ = {FormatNumber(real)} + {FormatNumber(imag)}i\n" +
+                                 $"   x₂ = {FormatNumber(real)} - {FormatNumber(imag)}i";
             }
         }
-        catch (FormatException)
+        catch
         {
-            ResultBox.Text = "Ошибка: Введите корректные числа!\n\n" +
-                             "Используйте цифры и точку (например: 2.5, -3, 0.75)";
-        }
-        catch (Exception ex)
-        {
-            ResultBox.Text = $"Непредвиденная ошибка:\n{ex.Message}";
+            ResultBox.Text = "Ошибка: введите корректные числа!";
         }
     }
 
-    private string FormatNumber(double number)
+    public void LockFields_IsCheckedChanged(object? sender, RoutedEventArgs e)
     {
-        if (double.IsNaN(number) || double.IsInfinity(number))
-            return "не определено";
-        
-        string formatted = Math.Round(number, 4).ToString();
-        
-        if (formatted.EndsWith(".0"))
-            formatted = formatted.Substring(0, formatted.Length - 2);
-        
-        if (Math.Abs(number) < 0.0001 && number != 0)
-            return number.ToString("E3");
-        
-        return formatted;
+        bool isLocked = LockFieldsCheckBox.IsChecked == true;
+        CoeffA.IsEnabled = !isLocked;
+        CoeffB.IsEnabled = !isLocked;
+        CoeffC.IsEnabled = !isLocked;
+    }   
+
+    private string FormatNumber(double n)
+    {
+        if (double.IsNaN(n) || double.IsInfinity(n)) return "не определено";
+        string s = Math.Round(n, 4).ToString();
+        if (s.EndsWith(".0")) s = s.Substring(0, s.Length - 2);
+        return s;
     }
 }
