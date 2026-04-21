@@ -2,8 +2,144 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="550"
         x:Class="firstApp.MainWindow"
-        Title="firstApp">
-    Welcome to Avalonia!
+        Title="Решение квадратных уравнений"
+        Width="500"
+        Height="550"
+        MinWidth="400"
+        MinHeight="450">
+
+    <Grid RowDefinitions="Auto,*,Auto,Auto"
+          Margin="15">
+
+        <Border Grid.Row="0"
+                Background="#2C3E50"
+                CornerRadius="8"
+                Margin="0,0,0,15"
+                Padding="10">
+            <TextBlock Text="📐 Квадратные уравнения: ax² + bx + c = 0"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"/>
+        </Border>
+
+        <StackPanel Grid.Row="1"
+                    Spacing="15">
+
+            <Border Background="#ECF0F1"
+                    CornerRadius="8"
+                    Padding="10">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <TextBlock Grid.Column="0"
+                               Text="a ="
+                               FontSize="20"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,15,0"/>
+                    <TextBox x:Name="CoeffA"
+                             Grid.Column="1"
+                             Text="1"
+                             FontSize="18"
+                             TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2"
+                               Text="x²"
+                               FontSize="18"
+                               FontStyle="Italic"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+                </Grid>
+            </Border>
+
+            <Border Background="#ECF0F1"
+                    CornerRadius="8"
+                    Padding="10">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <TextBlock Grid.Column="0"
+                               Text="b ="
+                               FontSize="20"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,15,0"/>
+                    <TextBox x:Name="CoeffB"
+                             Grid.Column="1"
+                             Text="-3"
+                             FontSize="18"
+                             TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2"
+                               Text="x"
+                               FontSize="18"
+                               FontStyle="Italic"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+                </Grid>
+            </Border>
+
+            <Border Background="#ECF0F1"
+                    CornerRadius="8"
+                    Padding="10">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <TextBlock Grid.Column="0"
+                               Text="c ="
+                               FontSize="20"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,15,0"/>
+                    <TextBox x:Name="CoeffC"
+                             Grid.Column="1"
+                             Text="2"
+                             FontSize="18"
+                             TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2"
+                               Text="= 0"
+                               FontSize="18"
+                               FontStyle="Italic"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+        <Button Grid.Row="2"
+                x:Name="SolveButton"
+                Content="РЕШИТЬ УРАВНЕНИЕ"
+                FontSize="16"
+                FontWeight="Bold"
+                Height="50"
+                Margin="0,15,0,15"
+                Background="#27AE60"
+                Foreground="White"
+                Click="Solve_Click">
+            <Button.Styles>
+                <Style Selector="Button:pointerover">
+                    <Setter Property="Background" Value="#219A52"/>
+                </Style>
+            </Button.Styles>
+        </Button>
+
+        <Border Grid.Row="3"
+                Background="#34495E"
+                CornerRadius="8"
+                Padding="10">
+            <StackPanel>
+                <TextBlock Text="📊 РЕЗУЛЬТАТ"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Foreground="#BDC3C7"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,10"/>
+                <TextBox x:Name="ResultBox"
+                         IsReadOnly="True"
+                         Text="Введите коэффициенты и нажмите 'Решить'"
+                         FontSize="14"
+                         TextAlignment="Center"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         Foreground="White"
+                         TextWrapping="Wrap"
+                         MinHeight="80"/>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Window>
