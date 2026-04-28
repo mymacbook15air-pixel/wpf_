@@ -2,105 +2,80 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="firstApp.MainWindow"
         Title="Решение квадратных уравнений"
-        Width="500"
-        Height="600"
+        Width="460"
+        Height="480"
         MinWidth="400"
-        MinHeight="500">
-
-    <Grid RowDefinitions="Auto,*,Auto,Auto,Auto"
-          Margin="15">
-
-        <!-- Заголовок -->
-        <Border Grid.Row="0"
-                Background="#2C3E50"
-                CornerRadius="8"
-                Margin="0,0,0,15"
-                Padding="10">
-            <TextBlock Text="📐 Квадратные уравнения: ax² + bx + c = 0"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       Foreground="White"
-                       HorizontalAlignment="Center"/>
+        MinHeight="400"
+        Background="White">
+    
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" 
+                   Text="Решение квадратных уравнений: ax² + bx + c = 0" 
+                   FontSize="14" 
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,15"/>
+        
+        <Border Grid.Row="1" Background="#F0F0F0" CornerRadius="4" Padding="10" Margin="0,5">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <TextBlock Grid.Column="0" Text="a =" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox x:Name="CoeffA" Grid.Column="1" Text="1" FontSize="14" Padding="5"/>
+                <TextBlock Grid.Column="2" Text="x²" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </Grid>
         </Border>
-
-        <!-- Поля ввода -->
-        <StackPanel Grid.Row="1"
-                    Spacing="15">
-
-            <Border Background="#ECF0F1" CornerRadius="8" Padding="10">
-                <Grid ColumnDefinitions="Auto,*,Auto">
-                    <TextBlock Grid.Column="0" Text="a =" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                    <TextBox x:Name="CoeffA" Grid.Column="1" Text="1" FontSize="18" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Text="x²" FontSize="18" FontStyle="Italic" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                </Grid>
-            </Border>
-
-            <Border Background="#ECF0F1" CornerRadius="8" Padding="10">
-                <Grid ColumnDefinitions="Auto,*,Auto">
-                    <TextBlock Grid.Column="0" Text="b =" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                    <TextBox x:Name="CoeffB" Grid.Column="1" Text="-3" FontSize="18" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Text="x" FontSize="18" FontStyle="Italic" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                </Grid>
-            </Border>
-
-            <Border Background="#ECF0F1" CornerRadius="8" Padding="10">
-                <Grid ColumnDefinitions="Auto,*,Auto">
-                    <TextBlock Grid.Column="0" Text="c =" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                    <TextBox x:Name="CoeffC" Grid.Column="1" Text="2" FontSize="18" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Text="= 0" FontSize="18" FontStyle="Italic" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                </Grid>
-            </Border>
-        </StackPanel>
-
-        <!-- Чекбокс -->
-        <Border Grid.Row="2"
-                Background="#F39C12"
-                CornerRadius="8"
-                Margin="0,5,0,5"
-                Padding="10">
-            <CheckBox x:Name="LockFieldsCheckBox"
-                            Content="🔒 Заблокировать редактирование коэффициентов"
-                            FontSize="14"
-                            FontWeight="Bold"
-                            Foreground="White"
-                            IsCheckedChanged="LockFields_IsCheckedChanged"/>
+        
+        <Border Grid.Row="2" Background="#F0F0F0" CornerRadius="4" Padding="10" Margin="0,5">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <TextBlock Grid.Column="0" Text="b =" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox x:Name="CoeffB" Grid.Column="1" Text="-3" FontSize="14" Padding="5"/>
+                <TextBlock Grid.Column="2" Text="x" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </Grid>
         </Border>
-
-        <!-- Кнопка -->
-        <Button Grid.Row="3"
-                x:Name="SolveButton"
-                Content="🧮 РЕШИТЬ УРАВНЕНИЕ"
-                FontSize="16"
+        
+        <Border Grid.Row="3" Background="#F0F0F0" CornerRadius="4" Padding="10" Margin="0,5">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <TextBlock Grid.Column="0" Text="c =" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox x:Name="CoeffC" Grid.Column="1" Text="2" FontSize="14" Padding="5"/>
+                <TextBlock Grid.Column="2" Text="= 0" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </Grid>
+        </Border>
+        
+        <Button Grid.Row="4" 
+                x:Name="SolveButton" 
+                Content="Решить" 
+                FontSize="16" 
                 FontWeight="Bold"
-                Height="50"
-                Margin="0,15,0,15"
-                Background="#27AE60"
+                Height="40" 
+                Margin="0,20,0,15" 
+                Background="#2E86C1"
                 Foreground="White"
+                BorderThickness="0"
                 Click="Solve_Click"/>
-
-        <!-- Результат -->
-        <Border Grid.Row="4"
-                Background="#34495E"
-                CornerRadius="8"
+        
+        <Border Grid.Row="5" 
+                Background="#F5F5F5" 
+                CornerRadius="4" 
+                BorderBrush="#CCCCCC" 
+                BorderThickness="1"
                 Padding="10">
-            <StackPanel>
-                <TextBlock Text="📊 РЕЗУЛЬТАТ"
-                           FontSize="14"
-                           FontWeight="Bold"
-                           Foreground="#BDC3C7"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,10"/>
-                <TextBox x:Name="ResultBox"
-                         IsReadOnly="True"
-                         Text="Введите коэффициенты и нажмите 'Решить'"
-                         FontSize="14"
-                         TextAlignment="Center"
-                         BorderThickness="0"
-                         Background="Transparent"
-                         Foreground="White"
-                         TextWrapping="Wrap"
-                         MinHeight="80"/>
-            </StackPanel>
+            <TextBox x:Name="ResultBox" 
+                     IsReadOnly="True" 
+                     Text="Введите коэффициенты и нажмите 'Решить'" 
+                     FontSize="13" 
+                     TextWrapping="Wrap" 
+                     BorderThickness="0" 
+                     Background="Transparent"
+                     Foreground="#333333"
+                     MinHeight="80"/>
         </Border>
     </Grid>
 </Window>

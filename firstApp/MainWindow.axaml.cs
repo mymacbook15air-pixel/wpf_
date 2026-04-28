@@ -71,14 +71,6 @@ public partial class MainWindow : Window
         }
     }
 
-    public void LockFields_IsCheckedChanged(object? sender, RoutedEventArgs e)
-    {
-        bool isLocked = LockFieldsCheckBox.IsChecked == true;
-        CoeffA.IsEnabled = !isLocked;
-        CoeffB.IsEnabled = !isLocked;
-        CoeffC.IsEnabled = !isLocked;
-    }   
-
     private string FormatNumber(double n)
     {
         if (double.IsNaN(n) || double.IsInfinity(n)) return "не определено";
