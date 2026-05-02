@@ -1,0 +1,94 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/rkarakchirgmail.com/gitWpfAvalonia/wpf_/Lesson5Second/Lesson5Second.csproj": {}
+  },
+  "projects": {
+    "/Users/rkarakchirgmail.com/gitWpfAvalonia/wpf_/Lesson5Second/Lesson5Second.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/rkarakchirgmail.com/gitWpfAvalonia/wpf_/Lesson5Second/Lesson5Second.csproj",
+        "projectName": "Lesson5Second",
+        "projectPath": "/Users/rkarakchirgmail.com/gitWpfAvalonia/wpf_/Lesson5Second/Lesson5Second.csproj",
+        "packagesPath": "/Users/rkarakchirgmail.com/.nuget/packages/",
+        "outputPath": "/Users/rkarakchirgmail.com/gitWpfAvalonia/wpf_/Lesson5Second/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/rkarakchirgmail.com/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/opt/homebrew/Cellar/dotnet/9.0.8/libexec/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Avalonia": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Avalonia.Controls.DataGrid": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Avalonia.Desktop": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Avalonia.Fonts.Inter": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Avalonia.Themes.Fluent": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AvaloniaUI.DiagnosticsSupport": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/9.0.8/libexec/sdk/9.0.109/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
